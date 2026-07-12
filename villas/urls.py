@@ -1,10 +1,22 @@
 from django.urls import path
-from .views import CreateVillaAPIView
+
+from .views import (
+    VillaListCreateAPIView,
+    VillaDetailAPIView,
+)
 
 urlpatterns = [
+
     path(
         "",
-        CreateVillaAPIView.as_view(),
-        name="create-villa",
+        VillaListCreateAPIView.as_view(),
+        name="villa-list-create",
     ),
+
+    path(
+        "<int:pk>/",
+        VillaDetailAPIView.as_view(),
+        name="villa-detail",
+    ),
+
 ]
