@@ -19,4 +19,9 @@ urlpatterns = [
     "api/villas/",
     include("villas.urls"),
 ),
+
+path(
+    "api/villas/",
+    include("availability.urls"),
+),
 ]
