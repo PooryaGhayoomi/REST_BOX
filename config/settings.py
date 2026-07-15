@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'rest_framework',
     "villas",
+    "availability.apps.AvailabilityConfig",
 ]
 
 MIDDLEWARE = [
