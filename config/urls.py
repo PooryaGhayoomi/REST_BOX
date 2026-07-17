@@ -41,4 +41,9 @@ urlpatterns = [
         "api/reservations/",
         include("reservations.urls"),
     ),
+    
+    path(
+    "api/payments/",
+    include("payments.urls"),
+),
 ]

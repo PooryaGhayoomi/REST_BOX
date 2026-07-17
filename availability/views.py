@@ -10,7 +10,8 @@ from villas.models import Villa
 from .models import Availability
 from .permissions import IsVillaOwnerHost
 from .serializers import AvailabilityBulkUpdateSerializer, AvailabilitySerializer
-
+from django.db import transaction
+from availability.models import Availability
 
 class VillaAvailabilityListAPIView(ListAPIView):
     """
