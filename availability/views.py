@@ -14,20 +14,11 @@ from django.db import transaction
 from availability.models import Availability
 
 class VillaAvailabilityListAPIView(ListAPIView):
-    """
-    GET /api/villas/{villa_id}/availability/
-
-    نمایش تقویم یک ویلا (روزهای خالی و پر). این endpoint عمومی است
-    تا guest بتواند قبل از رزرو، روزهای خالی ویلا را ببیند.
-
-    پارامتر اختیاری ?only_free=true فقط روزهای خالی را برمی‌گرداند.
-    """
 
     serializer_class = AvailabilitySerializer
 
     def get_queryset(self):
         villa_id = self.kwargs["villa_id"]
-        # اگر ویلا وجود نداشته باشد، خطای 404 برگردانده شود
         get_object_or_404(Villa, pk=villa_id)
 
         queryset = Availability.objects.filter(villa_id=villa_id)
@@ -40,21 +31,6 @@ class VillaAvailabilityListAPIView(ListAPIView):
 
 
 class VillaAvailabilityUpdateAPIView(APIView):
-    """
-    PATCH /api/villas/{villa_id}/availability/update/
-
-    فقط hostِ مالکِ ویلا می‌تواند روزهای مشخصی از تقویم را
-    باز یا بسته کند (مثلاً برای مسدود کردن دستی چند روز).
-
-    بدنه‌ی درخواست:
-    {
-        "days": [
-            {"date": "2025-07-01", "is_available": false},
-            {"date": "2025-07-02", "is_available": true}
-        ]
-    }
-    """
-
     permission_classes = [IsAuthenticated, IsVillaOwnerHost]
 
     def patch(self, request, villa_id):

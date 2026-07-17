@@ -7,17 +7,12 @@ from django.utils import timezone
 from villas.models import Villa
 from .models import Availability
 
-# طبق سناریوی پروژه: وقتی host یک ویلای جدید ثبت می‌کند،
-# تقویم آن باید برای ۶ ماه آینده (۱۸۰ روز) به صورت پیش‌فرض «خالی» باز شود.
 CALENDAR_HORIZON_DAYS = 180
 
 
 @receiver(post_save, sender=Villa)
 def create_villa_calendar(sender, instance, created, **kwargs):
-    """
-    هر بار که یک Villa جدید ساخته می‌شود، ۱۸۰ روز آینده را
-    به صورت is_available=True در تقویم آن ویلا ایجاد می‌کند.
-    """
+
     if not created:
         return
 

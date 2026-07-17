@@ -12,7 +12,6 @@ from .signals import CALENDAR_HORIZON_DAYS
 
 
 class AvailabilityAutoGenerationTests(APITestCase):
-    """تست تولید خودکار تقویم هنگام ساخت یک ویلای جدید."""
 
     def setUp(self):
         self.host = User.objects.create_user(
@@ -41,8 +40,6 @@ class AvailabilityAutoGenerationTests(APITestCase):
 
 
 class VillaAvailabilityAPITests(APITestCase):
-    """تست endpoint های نمایش و بروزرسانی تقویم ویلا."""
-
     def setUp(self):
         self.host = User.objects.create_user(
             username="host2",
@@ -118,8 +115,7 @@ class VillaAvailabilityAPITests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
 
-class VillaSearchByDateRangeTests(APITestCase):
-    """تست جستجوی ویلا بر اساس بازه تاریخی خالی بودن."""
+class VillaSearchByDateRangeTests(APITestCase): 
 
     def setUp(self):
         self.host = User.objects.create_user(
@@ -145,7 +141,6 @@ class VillaSearchByDateRangeTests(APITestCase):
         )
 
         today = timezone.localdate()
-        # یکی از روزهای بازه‌ی جستجو را برای ویلای دوم می‌بندیم
         Availability.objects.filter(
             villa=self.villa_booked,
             date=today + timedelta(days=1),
